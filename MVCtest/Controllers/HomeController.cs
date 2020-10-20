@@ -11,7 +11,7 @@ namespace MVCtest.Controllers
         public ActionResult Index()
         {
             return View();
-            
+
         }
 
         public ActionResult About()
@@ -24,6 +24,12 @@ namespace MVCtest.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult Test()
+        {
 
             return View();
         }
