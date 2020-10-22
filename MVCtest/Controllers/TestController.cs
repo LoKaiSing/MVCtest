@@ -43,5 +43,48 @@ namespace MVCtest.Controllers
 
             return View(person);
         }
+
+        public ActionResult Edit(int id)
+        {
+            return View(data.FirstOrDefault(p => p.Id == id));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int id,Person person)
+        {
+            if (ModelState.IsValid)
+            {
+                var one = data.FirstOrDefault(p =>p.Id == id);
+                one.Name = person.Name;
+                one.Age = person.Age;
+                return RedirectToAction("Index");
+            }
+
+            return View(person);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            data.FirstOrDefault(p =>p.Id == id);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id,FormCollection from)
+        {
+            if (ModelState.IsValid)
+            {
+                data.Remove(data.First(p =>p.Id == id));
+                return RedirectToAction("Index");
+            }
+
+            return View(id);
+        }
+
+        public ActionResult Details(int id)
+        {
+
+            return View(data.FirstOrDefault(p =>p.Id == id));
+        }
     }
 }
