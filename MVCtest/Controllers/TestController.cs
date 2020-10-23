@@ -33,6 +33,7 @@ namespace MVCtest.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Person person)
         {
             if (ModelState.IsValid)
@@ -50,6 +51,7 @@ namespace MVCtest.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id,Person person)
         {
             if (ModelState.IsValid)
@@ -70,6 +72,7 @@ namespace MVCtest.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id,FormCollection from)
         {
             if (ModelState.IsValid)
