@@ -117,7 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Person_Age_Required" xml:space="preserve">
+    <value>Pleace enter your age({0}-{99}).</value>
+  </data>
   <data name="Person_Name_Required" xml:space="preserve">
-    <value>Pleace enter your name</value>
+    <value>Pleace enter your name.</value>
   </data>
 </root>

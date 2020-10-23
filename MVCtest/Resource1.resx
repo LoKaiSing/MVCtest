@@ -117,7 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Person_Age_Required" xml:space="preserve">
+    <value>請輸入年紀必須介於{1} - {2}歲之間</value>
+  </data>
   <data name="Person_Name_Required" xml:space="preserve">
-    <value>請輸入個人姓名</value>
+    <value>請輸入姓名</value>
   </data>
 </root>

@@ -61,7 +61,16 @@ namespace MVCtest {
         }
         
         /// <summary>
-        ///   查詢類似 請輸入個人姓名 的當地語系化字串。
+        ///   查詢類似 請輸入年紀必須介於{1} - {2}歲之間 的當地語系化字串。
+        /// </summary>
+        internal static string Person_Age_Required {
+            get {
+                return ResourceManager.GetString("Person_Age_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類似 請輸入姓名 的當地語系化字串。
         /// </summary>
         internal static string Person_Name_Required {
             get {
