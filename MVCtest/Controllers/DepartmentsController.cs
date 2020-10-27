@@ -41,8 +41,12 @@ namespace MVCtest.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.InstructorID = new SelectList(db.Person, "ID", "FirstName");
+
             var item = db.Department.Find(id.Value);
+
+            //ViewBag.InstructorID = new SelectList(db.Person, "ID", "FirstName");
+            var dept = db.Department.Find(id);
+            ViewBag.InstructorID = new SelectList(db.Person, "ID", "FirstName", dept.InstructorID);
 
             return View(item);
         }
@@ -60,6 +64,33 @@ namespace MVCtest.Controllers
 
                 db.SaveChanges();
 
+                return RedirectToAction("Index");
+            }
+            //ViewBag.InstructorID = new SelectList(db.Person, "ID", "FirstName");
+
+
+
+
+
+
+            return View(department);
+        }
+        public ActionResult Details(int? id)
+        {
+            var data = db.Department.Find(id.Value);
+            return View(data);
+        }
+        public ActionResult Delete(int? id)
+        {
+            var item = db.Department.Find(id.Value);
+            return View(item);
+        }
+        [HttpPost]
+        public ActionResult Delete(int id,Department department)
+        {
+            if (ModelState.IsValid)
+            {
+                department = db.Department.Find(id);
                 return RedirectToAction("Index");
             }
 
