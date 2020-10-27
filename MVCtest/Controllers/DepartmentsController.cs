@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -77,24 +78,41 @@ namespace MVCtest.Controllers
         }
         public ActionResult Details(int? id)
         {
+            if (!id.HasValue)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             var data = db.Department.Find(id.Value);
+
+            if (data == null)
+            {
+                return HttpNotFound();
+            }
+
             return View(data);
         }
         public ActionResult Delete(int? id)
         {
+            if (!id.HasValue)
+            {
+                return HttpNotFound();
+            }
             var item = db.Department.Find(id.Value);
             return View(item);
         }
         [HttpPost]
-        public ActionResult Delete(int id,Department department)
+        public ActionResult Delete(int id,FormCollection form)
         {
-            if (ModelState.IsValid)
-            {
-                department = db.Department.Find(id);
-                return RedirectToAction("Index");
-            }
+            
+                var dept = db.Department.Find(id);
+                db.Department.Remove(dept);
 
-            return View(department);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            
+
+            
         }
     }
 }
