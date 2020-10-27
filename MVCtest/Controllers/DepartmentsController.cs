@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Omu.ValueInjecter;
 
 namespace MVCtest.Controllers
 {
@@ -52,16 +53,18 @@ namespace MVCtest.Controllers
             return View(item);
         }
         [HttpPost]
-        public ActionResult Edit(int id,Department department)
+        public ActionResult Edit(int id,DepartmentEdit department)
         {
             if (ModelState.IsValid)
             {
                 var item = db.Department.Find(id);
 
-                item.Budget = department.Budget;
-                item.Name = department.Name;
-                item.StartDate = department.StartDate;
-                item.InstructorID = department.InstructorID;
+                item.InjectFrom(department);
+
+                //item.Budget = department.Budget;
+                //item.Name = department.Name;
+                //item.StartDate = department.StartDate;
+                //item.InstructorID = department.InstructorID;
 
                 db.SaveChanges();
 
@@ -104,15 +107,15 @@ namespace MVCtest.Controllers
         [HttpPost]
         public ActionResult Delete(int id,FormCollection form)
         {
-            
+
                 var dept = db.Department.Find(id);
                 db.Department.Remove(dept);
 
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            
 
-            
+
+
         }
     }
 }
