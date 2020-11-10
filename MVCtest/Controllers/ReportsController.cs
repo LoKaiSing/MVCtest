@@ -76,6 +76,24 @@ namespace MVCtest.Controllers
             return View("CourseReport1", data);
         }
 
+        public ActionResult CourseReport4(int id)
+        {
+            var data = db.GetCourseReport(id).First();
+
+            ViewBag.SQL = sb.ToString();
+
+            return View( data);
+        }
+
+        public ActionResult CourseReport5(int id)
+        {
+            var data = db.Database.SqlQuery<GetCourseReport_Result>("EXEC GetCourseReport @p0",id).ToList();
+
+            ViewBag.SQL = sb.ToString();
+
+            return View("CourseReport1", data);
+        }
+
 
     }
 }
